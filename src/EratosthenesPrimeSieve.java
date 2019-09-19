@@ -43,9 +43,17 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
         for (int i = 1; i <= p; i++) {
             if (isPrime(i)) {
                 for (int k = 1; k < p; k++) {
-                    primeNumbersList.put(i*k, true);
+                    if (i * k <= p) {
+                        primeNumbersList.put(i*k, true);
+                    }
+                    else {
+                        break;
+                    }
                 }
             }
+        }
+        for (Map.Entry<Integer, Boolean> entry : primeNumbersList.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
         }
     }
 
