@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +68,8 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
         Klasse EratosthenesPrimeSieve
         */
         List<Integer> primeNumbers = new ArrayList<>();
+        int x = 0;
+        int y = 0;
         // zwei Primzahlen addieren welche eine gerade Zahl < 2 ergeben
 
             // Alle Primzahlen bis Obergrenze herausfinden
@@ -76,12 +80,17 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
             }
 
             // x + y Werte herausfinden
-            for (int i = 0; i < ; i++) {
-                
+            for (int i = 4; i <= p; i += 2) {
+                for (int j = 0; j < primeNumbers.size(); j++) {
+                    if (primeNumbers.get(j) + 2 == i) {
+                        System.out.println(primeNumbers.get(j) + " + " + 2 + " = " + i);
+                    }
+                }
             }
     }
 
     public static void main(String[] args) {
-
+        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(20);
+        e.algorithm2();
     }
 }
