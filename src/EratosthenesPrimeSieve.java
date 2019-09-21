@@ -13,8 +13,6 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     }
 
     public static void main(String[] args) {
-        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(30);
-        e.algorithm2(4);
     }
 
     @Override
@@ -78,7 +76,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
             // y-Werte durchlaufen
             for (int y = 0; y < primeNumbers.size(); y++) {
                 if (primeNumbers.get(x) + primeNumbers.get(y) == n) {
-                    System.out.println(primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + n);
+                    System.out.println(n + " " + "summe:" + " " + primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + n);
                     foundCombo = true;
                 }
             }
