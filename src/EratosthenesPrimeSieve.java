@@ -13,7 +13,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     }
 
     public static void main(String[] args) {
-        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(20);
+        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(30);
         e.algorithm2(4);
     }
 
@@ -58,29 +58,37 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
     // Aufgabe2
     public void algorithm2(int n) {
-        if (n == p) {
-            System.out.println("Ende");
-            return;
-        }
+        boolean foundCombo = false;
 
         List<Integer> primeNumbers = new ArrayList<>();
+
         // Alle Primzahlen bis Obergrenze herausfinden
         for (int i = 2; i <= p; i++) {
             if (isPrime(i)) {
                 primeNumbers.add(i);
             }
         }
-        
+
         // x-Werte durchlaufen
         for (int x = 0; x < primeNumbers.size(); x++) {
+            if (foundCombo) {
+                break;
+            }
 
             // y-Werte durchlaufen
             for (int y = 0; y < primeNumbers.size(); y++) {
                 if (primeNumbers.get(x) + primeNumbers.get(y) == n) {
                     System.out.println(primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + n);
+                    foundCombo = true;
                 }
             }
         }
+
+        // Wenn alle Kombos bis zur gewünschten Zahl gefunden wurden beenden
+        if (n == p) {
+            return;
+        }
+
         algorithm2(n + 2);
     }
 }
