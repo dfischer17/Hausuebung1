@@ -32,7 +32,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
         }
     }
 
-    public void algorithmAlt() {
+    public void algorithm() {
         boolean[] arr = new boolean[p + 1];
 
         // Potenzielle Primzahlenliste durchlaufen
@@ -50,6 +50,6 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
     }
 
     public static void main(String[] args) {
-        
+
     }
 }
