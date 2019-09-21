@@ -5,19 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EratosthenesPrimeSieve implements PrimeSieve{
+public class EratosthenesPrimeSieve implements PrimeSieve {
     private int p;
 
     public EratosthenesPrimeSieve(int p) {
         this.p = p;
     }
 
+    public static void main(String[] args) {
+        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(20);
+        e.algorithm2(4);
+    }
+
     @Override
     public boolean isPrime(int p) {
         if (p < 2) {
             return false;
-        }
-        else {
+        } else {
             for (int i = 2; i < p; i++) {
                 if (p % i == 0) {
                     return false;
@@ -53,49 +57,30 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
     }
 
     // Aufgabe2
-    public void algorithm2() {
-        /*
-        Wir wissen, N sind alle natürlichen Zahlen. Wir denieren nun die Menge Ng als die Menge aller
-        geraden natürlichen Zahlen. Weiters sei P die Menge aller Primzahlen. Es gibt nun eine Vermutung
-        die besagt: Für jede Zahl n ∈ Ng, wobei n > 2 gilt, gibt es zwei Zahlen x, y ∈ P sodass gilt: n = x+y.
-        Beispiele sind: 5 + 13 = 18, 2 + 2 = 4, 3 + 3 = 6
-        Man kann leicht einsehen, dass die Summe nicht eindeutig sein muss: 7 + 11 = 5 + 13 = 18.
-        */
+    public void algorithm2(int n) {
+        if (n == p) {
+            System.out.println("Ende");
+            return;
+        }
 
-        /*
-        Implementieren Sie einen Algorithmus, welcher für jede gerade natürliche Zahl n > 2 bis zu einer
-        Obergrenze o ∈ N zwei Primzahlen x, y ∈ P ndet, sodass gilt: x + y = n. Verwenden Sie dazu die
-        Klasse EratosthenesPrimeSieve
-        */
         List<Integer> primeNumbers = new ArrayList<>();
+        // Alle Primzahlen bis Obergrenze herausfinden
+        for (int i = 2; i <= p; i++) {
+            if (isPrime(i)) {
+                primeNumbers.add(i);
+            }
+        }
+        
+        // x-Werte durchlaufen
+        for (int x = 0; x < primeNumbers.size(); x++) {
 
-        // zwei Primzahlen addieren welche eine gerade Zahl < 2 ergeben
-
-            // Alle Primzahlen bis Obergrenze herausfinden
-            for (int i = 2; i <= p; i++) {
-                if (isPrime(i)) {
-                    primeNumbers.add(i);
+            // y-Werte durchlaufen
+            for (int y = 0; y < primeNumbers.size(); y++) {
+                if (primeNumbers.get(x) + primeNumbers.get(y) == n) {
+                    System.out.println(primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + n);
                 }
             }
-
-            // Gerade Zahlen groesser als 4 durchlaufen
-            for (int i = 4; i <= p; i += 2) {
-
-                // x-Werte durchlaufen
-                for (int x = 0; x < primeNumbers.size(); x++) {
-
-                    // y-Werte durchlaufen
-                    for (int y = 0; y < primeNumbers.size(); y++) {
-                        if (primeNumbers.get(x) + primeNumbers.get(y) == i) {
-                            System.out.println(primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + i);
-                        }
-                    }
-                }
-            }
-    }
-
-    public static void main(String[] args) {
-        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(20);
-        e.algorithm2();
+        }
+        algorithm2(n + 2);
     }
 }
