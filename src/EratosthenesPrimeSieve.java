@@ -32,33 +32,24 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
         }
     }
 
-    public void algorithm() {
-        // Liste der Potenziellen Primzahlen erstellen
-        Map<Integer, Boolean> primeNumbersList = new HashMap<>();
-        for (int i = 1; i <= p; i++) {
-            primeNumbersList.put(i, false);
-        }
+    public void algorithmAlt() {
+        boolean[] arr = new boolean[p + 1];
 
-        //wenn Primzahl gefunden ==> alle Vielfache markieren
-        for (int i = 1; i <= p; i++) {
-            if (isPrime(i)) {
-                for (int k = 1; k < p; k++) {
-                    if (i * k <= p) {
-                        primeNumbersList.put(i*k, true);
-                    }
-                    else {
-                        break;
-                    }
+        // Potenzielle Primzahlenliste durchlaufen
+        for (int i = 2; i < arr.length; i++) {
+            if (!arr[i]) {
+                System.out.println(i);
+                // Alle Vielfachen einer Primzahl markieren
+                for (int j = 1; i * j <= p; j++) {
+                    arr[i * j] = true;
                 }
             }
         }
-        for (Map.Entry<Integer, Boolean> entry : primeNumbersList.entrySet()) {
-            System.out.println(entry.getKey() + " => " + entry.getValue());
-        }
+
+
     }
 
     public static void main(String[] args) {
-        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(10);
-        e.algorithm();
+        
     }
 }
