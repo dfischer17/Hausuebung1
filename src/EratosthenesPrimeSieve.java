@@ -68,8 +68,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
         Klasse EratosthenesPrimeSieve
         */
         List<Integer> primeNumbers = new ArrayList<>();
-        int x = 0;
-        int y = 0;
+
         // zwei Primzahlen addieren welche eine gerade Zahl < 2 ergeben
 
             // Alle Primzahlen bis Obergrenze herausfinden
@@ -79,11 +78,17 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
                 }
             }
 
-            // x + y Werte herausfinden
+            // Gerade Zahlen groesser als 4 durchlaufen
             for (int i = 4; i <= p; i += 2) {
-                for (int j = 0; j < primeNumbers.size(); j++) {
-                    if (primeNumbers.get(j) + 2 == i) {
-                        System.out.println(primeNumbers.get(j) + " + " + 2 + " = " + i);
+
+                // x-Werte durchlaufen
+                for (int x = 0; x < primeNumbers.size(); x++) {
+
+                    // y-Werte durchlaufen
+                    for (int y = 0; y < primeNumbers.size(); y++) {
+                        if (primeNumbers.get(x) + primeNumbers.get(y) == i) {
+                            System.out.println(primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + i);
+                        }
                     }
                 }
             }
