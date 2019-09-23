@@ -13,6 +13,11 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     }
 
     public static void main(String[] args) {
+        EratosthenesPrimeSieve e = new EratosthenesPrimeSieve(100);
+        System.out.println("Algorithmus 1");
+        e.algorithm();
+        System.out.println("Algorithmus 2");
+        e.algorithm2(100);
     }
 
     @Override
@@ -55,7 +60,41 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     }
 
     // Aufgabe2
-    public void algorithm2(int n) {
+    public void algorithm2(int obergrenze) {
+        boolean foundCombo = false;
+
+        List<Integer> primeNumbers = new ArrayList<>();
+
+        // Alle Primzahlen bis Obergrenze herausfinden
+        for (int i = 2; i <= p; i++) {
+            if (isPrime(i)) {
+                primeNumbers.add(i);
+            }
+        }
+
+        // Ganze Zahlen groesser als 2 durchlaufen
+        for (int n = 0; n <= obergrenze; n += 2) {
+            compare:
+
+            // x-Werte durchlaufen
+            for (int x = 0; x < primeNumbers.size(); x++) {
+
+                // y-Werte durchlaufen
+                for (int y = 0; y < primeNumbers.size(); y++) {
+                    if (primeNumbers.get(x) + primeNumbers.get(y) == n) {
+                        System.out.println(n + " " + "summe:" + " " + primeNumbers.get(x) + " + " + primeNumbers.get(y)
+                                + " = " + n);
+                        break compare;
+                    }
+                }
+            }
+        }
+
+    }
+
+    // Diese Rekursive Implementation wurde im Laufe der Entwicklung verworfen
+    @Deprecated
+    public void algorithm2Recursive(int n) {
         boolean foundCombo = false;
 
         List<Integer> primeNumbers = new ArrayList<>();
@@ -76,7 +115,8 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
             // y-Werte durchlaufen
             for (int y = 0; y < primeNumbers.size(); y++) {
                 if (primeNumbers.get(x) + primeNumbers.get(y) == n) {
-                    System.out.println(n + " " + "summe:" + " " + primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + n);
+                    System.out.println(
+                            n + " " + "summe:" + " " + primeNumbers.get(x) + " + " + primeNumbers.get(y) + " = " + n);
                     foundCombo = true;
                 }
             }
@@ -87,6 +127,6 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
             return;
         }
 
-        algorithm2(n + 2);
+        algorithm2Recursive(n + 2);
     }
 }
